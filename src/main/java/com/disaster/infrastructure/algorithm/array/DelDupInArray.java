@@ -13,7 +13,7 @@ public class DelDupInArray {
 
     public static void main(String[] args) {
         int[] nums = new int[]{0,0,0,1,1,2,2,2,3,3,3,3,4,5,5,6};
-        int i = delDupInArray1(nums);
+        int i = findDuplicates(nums);
         for (int j = 0; j < i; j++) {
             System.out.println("nums = " + nums[j]);
         }
@@ -32,7 +32,7 @@ public class DelDupInArray {
         return slow + 1;
     }
 
-    public static int delDupInArray1(int[] nums) {
+    public static int findDuplicates(int[] nums) {
         if (nums.length == 0) return 0;
         int slow = 0, fast = 1;
         for (int i = fast; i < nums.length; i++) {
@@ -44,4 +44,28 @@ public class DelDupInArray {
         }
         return slow + 1;
     }
+
+
+    public int findDuplicate(int[] nums) {
+        int slow = nums[0];
+        int fast = nums[0];
+
+        while (true) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+            if (slow == fast) {
+                break;
+            }
+        }
+
+        int ptr1 = nums[0];
+        int ptr2 = slow;
+        while (ptr1 != ptr2) {
+            ptr1 = nums[ptr1];
+            ptr2 = nums[ptr2];
+        }
+
+        return ptr1;
+    }
+
 }

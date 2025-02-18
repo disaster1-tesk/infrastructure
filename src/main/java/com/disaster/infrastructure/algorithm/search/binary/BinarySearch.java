@@ -53,4 +53,26 @@ public class BinarySearch {
         return -1;
     }
 
+    /**
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public static int left_bound(int[] nums, int target) {
+        int left = 0, right = nums.length; // right的值怎么取决定区间是否是双闭或者单闭
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) {
+                right = mid;//注意
+            } else if (nums[mid] < target) {
+                left = mid + 1;//注意
+            }else if (nums[mid] > target) {
+                right = mid;//注意
+            }
+        }
+        return left;
+    }
+
+
 }
